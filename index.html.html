@@ -1,0 +1,1439 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Moonlight Homecare Ltd – Job Application Form</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@700&display=swap');
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --navy:   #1a2b4a;
+    --gold:   #c9a84c;
+    --teal:   #2a7f8f;
+    --coral:  #e05c45;
+    --lavender: #7b6fa0;
+    --sage:   #4a8c6e;
+    --light:  #f7f9fc;
+    --white:  #ffffff;
+    --border: #d0d9e8;
+    --text:   #1e2d3d;
+    --muted:  #6b7a8d;
+  }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    background: linear-gradient(135deg, #e8f0fe 0%, #fce8e6 50%, #e8f5e9 100%);
+    min-height: 100vh;
+    padding: 20px;
+    color: var(--text);
+  }
+
+  .page-wrap {
+    max-width: 860px;
+    margin: 0 auto;
+  }
+
+  /* ── HEADER ── */
+  .form-header {
+    background: var(--navy);
+    border-radius: 16px 16px 0 0;
+    padding: 36px 40px 28px;
+    position: relative;
+    overflow: hidden;
+  }
+  .form-header::before {
+    content: '';
+    position: absolute; top: -40px; right: -40px;
+    width: 200px; height: 200px;
+    background: radial-gradient(circle, rgba(201,168,76,0.25) 0%, transparent 70%);
+    border-radius: 50%;
+  }
+  .form-header::after {
+    content: '☽';
+    position: absolute; top: 16px; right: 36px;
+    font-size: 56px; opacity: 0.12; color: var(--gold);
+  }
+  .org-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 28px;
+    color: var(--gold);
+    letter-spacing: 0.3px;
+    margin-bottom: 4px;
+  }
+  .form-subtitle {
+    color: rgba(255,255,255,0.75);
+    font-size: 13px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    margin-bottom: 16px;
+  }
+  .form-title {
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--white);
+    margin-bottom: 8px;
+  }
+  .form-note {
+    font-size: 12.5px;
+    color: rgba(255,255,255,0.6);
+    line-height: 1.6;
+  }
+  .header-strip {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 12px;
+    margin-top: 20px;
+    padding-top: 20px;
+    border-top: 1px solid rgba(255,255,255,0.15);
+  }
+  .strip-field label { color: rgba(255,255,255,0.6); font-size: 10px; text-transform: uppercase; letter-spacing: 1px; display: block; margin-bottom: 4px; }
+  .strip-field input, .strip-field select {
+    background: rgba(255,255,255,0.1);
+    border: 1px solid rgba(255,255,255,0.25);
+    border-radius: 6px;
+    color: white;
+    padding: 8px 10px;
+    font-size: 13px;
+    width: 100%;
+    font-family: inherit;
+  }
+  .strip-field input::placeholder { color: rgba(255,255,255,0.35); }
+  .strip-field select option { background: var(--navy); }
+
+  /* ── SECTIONS ── */
+  .section {
+    background: var(--white);
+    margin-top: 3px;
+    padding: 28px 36px;
+  }
+  .section:last-of-type { border-radius: 0 0 16px 16px; }
+
+  .section-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 22px;
+    padding-bottom: 14px;
+    border-bottom: 2px solid var(--border);
+  }
+  .section-badge {
+    width: 34px; height: 34px;
+    border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 16px; flex-shrink: 0;
+  }
+  .badge-teal    { background: #e0f4f7; color: var(--teal); }
+  .badge-gold    { background: #fdf3dc; color: var(--gold); }
+  .badge-coral   { background: #fdecea; color: var(--coral); }
+  .badge-lavender{ background: #ede9f7; color: var(--lavender); }
+  .badge-sage    { background: #e6f4ed; color: var(--sage); }
+  .badge-navy    { background: #e5eaf3; color: var(--navy); }
+
+  .section-title {
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--navy);
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+  }
+  .section-desc {
+    font-size: 12px;
+    color: var(--muted);
+    margin-top: 2px;
+  }
+
+  /* ── FORM GRID ── */
+  .grid { display: grid; gap: 14px; }
+  .grid-2 { grid-template-columns: 1fr 1fr; }
+  .grid-3 { grid-template-columns: 1fr 1fr 1fr; }
+  .col-span-2 { grid-column: span 2; }
+  .col-span-3 { grid-column: span 3; }
+
+  .field { display: flex; flex-direction: column; gap: 5px; }
+  .field label {
+    font-size: 11.5px;
+    font-weight: 600;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.7px;
+  }
+  .field label .req { color: var(--coral); margin-left: 2px; }
+  .field input, .field select, .field textarea {
+    border: 1.5px solid var(--border);
+    border-radius: 8px;
+    padding: 10px 12px;
+    font-size: 14px;
+    font-family: inherit;
+    color: var(--text);
+    background: var(--light);
+    transition: border-color 0.2s, box-shadow 0.2s;
+    width: 100%;
+  }
+  .field input:focus, .field select:focus, .field textarea:focus {
+    outline: none;
+    border-color: var(--teal);
+    box-shadow: 0 0 0 3px rgba(42,127,143,0.12);
+    background: var(--white);
+  }
+  .field textarea { resize: vertical; min-height: 70px; line-height: 1.5; }
+
+  /* ── SHIFT GRID ── */
+  .shift-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    margin-top: 4px;
+  }
+  .shift-card {
+    border: 2px solid var(--border);
+    border-radius: 10px;
+    padding: 12px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+    transition: all 0.2s;
+    background: var(--light);
+    position: relative;
+  }
+  .shift-card input[type="checkbox"] { position: absolute; opacity: 0; width: 0; height: 0; }
+  .shift-card .check-box {
+    width: 20px; height: 20px;
+    border: 2px solid var(--border);
+    border-radius: 5px;
+    flex-shrink: 0;
+    display: flex; align-items: center; justify-content: center;
+    transition: all 0.2s;
+    font-size: 12px; color: white;
+  }
+  .shift-card:has(input:checked) {
+    border-color: var(--teal);
+    background: rgba(42,127,143,0.06);
+  }
+  .shift-card:has(input:checked) .check-box {
+    background: var(--teal);
+    border-color: var(--teal);
+  }
+  .shift-card:has(input:checked) .check-box::after { content: '✓'; }
+  .shift-label { font-size: 13px; font-weight: 500; color: var(--text); }
+
+  /* ── RADIO YES/NO ── */
+  .yn-group {
+    display: flex;
+    gap: 10px;
+    margin-top: 2px;
+  }
+  .yn-label {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 16px;
+    border: 2px solid var(--border);
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 13px;
+    font-weight: 500;
+    background: var(--light);
+    transition: all 0.2s;
+  }
+  .yn-label input { accent-color: var(--teal); }
+  .yn-label:has(input:checked) { border-color: var(--teal); background: rgba(42,127,143,0.07); color: var(--teal); }
+
+  /* ── MEDICAL GRID ── */
+  .med-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+  }
+  .med-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 9px 12px;
+    background: var(--light);
+    border-radius: 8px;
+    border: 1px solid var(--border);
+    font-size: 13px;
+  }
+  .med-item .med-yns { display: flex; gap: 6px; }
+  .med-yn {
+    display: flex; align-items: center; gap: 4px;
+    font-size: 12px; font-weight: 500; cursor: pointer;
+    padding: 3px 8px; border-radius: 5px;
+    border: 1.5px solid var(--border); background: white;
+    transition: all 0.15s;
+  }
+  .med-yn input { accent-color: var(--teal); position: absolute; opacity: 0; }
+  .med-yn:has(input:checked) { border-color: var(--teal); background: rgba(42,127,143,0.08); color: var(--teal); }
+
+  /* ── EMPLOYER CARD ── */
+  .employer-card {
+    background: var(--light);
+    border: 1.5px solid var(--border);
+    border-radius: 12px;
+    padding: 20px;
+    margin-bottom: 16px;
+  }
+  .employer-card-title {
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--teal);
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    margin-bottom: 14px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .employer-card-title::before {
+    content: '';
+    display: block;
+    width: 4px; height: 14px;
+    background: var(--teal);
+    border-radius: 2px;
+  }
+
+  /* ── REFERENCE CARD ── */
+  .ref-card {
+    background: var(--light);
+    border: 1.5px solid var(--border);
+    border-radius: 12px;
+    padding: 20px;
+    margin-bottom: 16px;
+  }
+  .ref-card-title {
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--lavender);
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    margin-bottom: 14px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .ref-card-title::before {
+    content: '';
+    display: block;
+    width: 4px; height: 14px;
+    background: var(--lavender);
+    border-radius: 2px;
+  }
+
+  /* ── ETHNICITY ── */
+  .eth-section { margin-bottom: 18px; }
+  .eth-group-title {
+    font-size: 11.5px;
+    font-weight: 700;
+    color: var(--navy);
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    margin-bottom: 8px;
+    padding: 4px 10px;
+    background: #f0f3f8;
+    border-radius: 5px;
+    display: inline-block;
+  }
+  .eth-options {
+    display: flex; flex-wrap: wrap; gap: 8px;
+  }
+  .eth-option {
+    display: flex; align-items: center; gap: 6px;
+    padding: 6px 12px;
+    border: 1.5px solid var(--border);
+    border-radius: 20px;
+    font-size: 12.5px;
+    cursor: pointer;
+    background: var(--white);
+    transition: all 0.15s;
+  }
+  .eth-option input { accent-color: var(--teal); }
+  .eth-option:has(input:checked) { border-color: var(--teal); background: rgba(42,127,143,0.08); color: var(--teal); font-weight: 600; }
+
+  /* ── DECLARATION ── */
+  .declaration-box {
+    background: #fdf3dc;
+    border: 1.5px solid var(--gold);
+    border-radius: 10px;
+    padding: 18px;
+    font-size: 13px;
+    line-height: 1.65;
+    color: #5a4010;
+    margin-bottom: 20px;
+  }
+
+  /* ── DOCUMENT CHECKLIST ── */
+  .doc-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+  }
+  .doc-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 12px;
+    background: var(--light);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    font-size: 13px;
+  }
+  .doc-item input[type="checkbox"] { accent-color: var(--teal); width: 15px; height: 15px; flex-shrink: 0; }
+
+  /* ── DIVIDER ── */
+  .divider { border: none; border-top: 1.5px solid var(--border); margin: 20px 0; }
+
+  /* ── SUBMIT ── */
+  .submit-wrap {
+    background: var(--navy);
+    border-radius: 0 0 16px 16px;
+    padding: 28px 36px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+  .submit-note { color: rgba(255,255,255,0.6); font-size: 12px; line-height: 1.5; }
+  .btn-submit {
+    background: linear-gradient(135deg, var(--gold), #e0b84a);
+    color: var(--navy);
+    border: none;
+    border-radius: 10px;
+    padding: 14px 36px;
+    font-size: 15px;
+    font-weight: 700;
+    font-family: inherit;
+    cursor: pointer;
+    letter-spacing: 0.4px;
+    transition: opacity 0.2s, transform 0.1s;
+    flex-shrink: 0;
+  }
+  .btn-submit:hover { opacity: 0.9; transform: translateY(-1px); }
+  .btn-submit:active { transform: translateY(0); }
+
+  /* ── SUCCESS ── */
+  #success-msg {
+    display: none;
+    background: #e6f4ed;
+    border: 2px solid var(--sage);
+    border-radius: 12px;
+    padding: 24px 30px;
+    text-align: center;
+    margin-top: 16px;
+    color: #1e4d35;
+    font-size: 15px;
+    line-height: 1.6;
+  }
+  #success-msg strong { display: block; font-size: 20px; margin-bottom: 6px; }
+
+  /* ── HELPER TEXT ── */
+  .helper { font-size: 11.5px; color: var(--muted); margin-top: 3px; }
+
+  @media (max-width: 640px) {
+    .section { padding: 20px 18px; }
+    .form-header { padding: 24px 18px 20px; }
+    .grid-2, .grid-3 { grid-template-columns: 1fr; }
+    .col-span-2, .col-span-3 { grid-column: span 1; }
+    .shift-grid { grid-template-columns: 1fr 1fr; }
+    .med-grid { grid-template-columns: 1fr; }
+    .doc-grid { grid-template-columns: 1fr; }
+    .header-strip { grid-template-columns: 1fr; }
+    .submit-wrap { flex-direction: column; align-items: flex-start; }
+    .btn-submit { width: 100%; text-align: center; }
+  }
+</style>
+</head>
+<body>
+<div class="page-wrap">
+
+<form id="appForm" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+
+<!-- ══════════════════ HEADER ══════════════════ -->
+<div class="form-header">
+  <div class="form-subtitle">Regulated by the Care Quality Commission</div>
+  <div class="org-name">Moonlight Homecare Ltd</div>
+  <div class="form-title">Employment Application Form</div>
+  <div class="form-note">Please complete all sections as fully as possible. All information is treated in strict confidence and used solely for recruitment purposes.</div>
+  <div class="header-strip">
+    <div class="strip-field">
+      <label>Position Applied For <span style="color:var(--coral)">*</span></label>
+      <select name="position" required>
+        <option value="">Select role…</option>
+        <option>Care Assistant</option>
+        <option>Senior Carer</option>
+        <option>Care Coordinator</option>
+        <option>Office Administrator</option>
+        <option>Other</option>
+      </select>
+    </div>
+    <div class="strip-field">
+      <label>Date of Application</label>
+      <input type="date" name="application_date">
+    </div>
+    <div class="strip-field">
+      <label>How Did You Hear About Us?</label>
+      <select name="referral_source">
+        <option value="">Select…</option>
+        <option>Indeed</option>
+        <option>Reed</option>
+        <option>CV-Library</option>
+        <option>Word of Mouth</option>
+        <option>Our Website</option>
+        <option>Social Media</option>
+        <option>Other</option>
+      </select>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════ 1. PERSONAL DETAILS ══════════════════ -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-badge badge-teal">👤</div>
+    <div>
+      <div class="section-title">Personal Details</div>
+      <div class="section-desc">Your contact and personal information</div>
+    </div>
+  </div>
+
+  <div class="grid grid-3">
+    <div class="field">
+      <label>Title <span class="req">*</span></label>
+      <select name="title" required>
+        <option value="">Select…</option>
+        <option>Mr</option><option>Mrs</option><option>Miss</option><option>Ms</option><option>Dr</option>
+      </select>
+    </div>
+    <div class="field">
+      <label>First Name <span class="req">*</span></label>
+      <input type="text" name="first_name" placeholder="e.g. Sarah" required>
+    </div>
+    <div class="field">
+      <label>Last Name <span class="req">*</span></label>
+      <input type="text" name="last_name" placeholder="e.g. Johnson" required>
+    </div>
+    <div class="field">
+      <label>Date of Birth <span class="req">*</span></label>
+      <input type="date" name="dob" required>
+    </div>
+    <div class="field">
+      <label>National Insurance No. <span class="req">*</span></label>
+      <input type="text" name="ni_number" placeholder="e.g. AB 12 34 56 C" required>
+    </div>
+    <div class="field">
+      <label>Nationality <span class="req">*</span></label>
+      <input type="text" name="nationality" placeholder="e.g. British" required>
+    </div>
+    <div class="field col-span-3">
+      <label>Full Home Address <span class="req">*</span></label>
+      <input type="text" name="address" placeholder="House number, street, town, postcode" required>
+    </div>
+    <div class="field">
+      <label>Home Telephone</label>
+      <input type="tel" name="home_tel" placeholder="e.g. 01234 567890">
+    </div>
+    <div class="field">
+      <label>Mobile Number <span class="req">*</span></label>
+      <input type="tel" name="mobile" placeholder="e.g. 07700 900000" required>
+    </div>
+    <div class="field">
+      <label>Email Address <span class="req">*</span></label>
+      <input type="email" name="email" placeholder="e.g. sarah@email.com" required>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <div class="grid grid-2" style="margin-bottom:14px">
+    <div class="field">
+      <label>If not a British Citizen — Date of Entry to UK</label>
+      <input type="date" name="entry_date">
+    </div>
+    <div class="field">
+      <label>Work Permit / Visa No. (if applicable)</label>
+      <input type="text" name="work_permit">
+    </div>
+  </div>
+
+  <hr class="divider">
+  <p style="font-size:12px;color:var(--muted);margin-bottom:12px;font-weight:600;text-transform:uppercase;letter-spacing:0.7px;">Next of Kin</p>
+
+  <div class="grid grid-3">
+    <div class="field">
+      <label>Next of Kin Full Name <span class="req">*</span></label>
+      <input type="text" name="nok_name" required>
+    </div>
+    <div class="field">
+      <label>Relationship <span class="req">*</span></label>
+      <input type="text" name="nok_relationship" placeholder="e.g. Spouse, Parent" required>
+    </div>
+    <div class="field">
+      <label>Next of Kin Telephone <span class="req">*</span></label>
+      <input type="tel" name="nok_tel" required>
+    </div>
+    <div class="field col-span-2">
+      <label>Next of Kin Address</label>
+      <input type="text" name="nok_address" placeholder="If different from your address">
+    </div>
+    <div class="field">
+      <label>Next of Kin Email</label>
+      <input type="email" name="nok_email">
+    </div>
+  </div>
+
+  <hr class="divider">
+  <p style="font-size:12px;color:var(--muted);margin-bottom:12px;font-weight:600;text-transform:uppercase;letter-spacing:0.7px;">Availability & Travel</p>
+
+  <div class="shift-grid">
+    <label class="shift-card"><input type="checkbox" name="shifts" value="Early Shift"><span class="check-box"></span><span class="shift-label">🌅 Early Shift</span></label>
+    <label class="shift-card"><input type="checkbox" name="shifts" value="Late Shift"><span class="check-box"></span><span class="shift-label">🌆 Late Shift</span></label>
+    <label class="shift-card"><input type="checkbox" name="shifts" value="Night Shift"><span class="check-box"></span><span class="shift-label">🌙 Night Shift</span></label>
+    <label class="shift-card"><input type="checkbox" name="shifts" value="Weekdays"><span class="check-box"></span><span class="shift-label">📅 Weekdays</span></label>
+    <label class="shift-card"><input type="checkbox" name="shifts" value="Weekends"><span class="check-box"></span><span class="shift-label">📆 Weekends</span></label>
+    <label class="shift-card"><input type="checkbox" name="shifts" value="Any Shift"><span class="check-box"></span><span class="shift-label">✅ Any Shift</span></label>
+  </div>
+
+  <div class="grid grid-2" style="margin-top:14px">
+    <div class="field">
+      <label>Full Clean Driving Licence? <span class="req">*</span></label>
+      <div class="yn-group">
+        <label class="yn-label"><input type="radio" name="driving_licence" value="Yes" required> Yes</label>
+        <label class="yn-label"><input type="radio" name="driving_licence" value="No"> No</label>
+      </div>
+    </div>
+    <div class="field">
+      <label>How Far Are You Willing to Travel?</label>
+      <select name="travel_distance">
+        <option value="">Select…</option>
+        <option>Up to 5 miles</option>
+        <option>Up to 10 miles</option>
+        <option>Up to 15 miles</option>
+        <option>Up to 20 miles</option>
+        <option>20+ miles</option>
+      </select>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════ 2. BANK DETAILS ══════════════════ -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-badge badge-gold">🏦</div>
+    <div>
+      <div class="section-title">Bank Details</div>
+      <div class="section-desc">For monthly payroll — please ensure details are correct</div>
+    </div>
+  </div>
+
+  <div class="grid grid-2">
+    <div class="field">
+      <label>Account Holder Name <span class="req">*</span></label>
+      <input type="text" name="bank_holder" required>
+    </div>
+    <div class="field">
+      <label>Name of Bank <span class="req">*</span></label>
+      <input type="text" name="bank_name" required>
+    </div>
+    <div class="field">
+      <label>Account Number <span class="req">*</span></label>
+      <input type="text" name="bank_account" placeholder="8 digits" maxlength="8" required>
+    </div>
+    <div class="field">
+      <label>Sort Code <span class="req">*</span></label>
+      <input type="text" name="sort_code" placeholder="e.g. 12-34-56" required>
+    </div>
+    <div class="field col-span-2">
+      <label>Bank Address</label>
+      <input type="text" name="bank_address">
+    </div>
+  </div>
+
+  <div class="declaration-box" style="margin-top:16px;font-size:12.5px;">
+    I authorise Moonlight Homecare Ltd to pay my monthly earnings directly into the bank or building society whose details I have given above. I confirm I will notify Moonlight Homecare in writing of any changes to these details. I have read and understood the 48-hour working agreement and consent that the working week limit shall not apply to my assignment.
+  </div>
+
+  <div class="grid grid-2">
+    <div class="field">
+      <label>Print Name</label>
+      <input type="text" name="bank_print_name">
+    </div>
+    <div class="field">
+      <label>Date</label>
+      <input type="date" name="bank_date">
+    </div>
+  </div>
+
+  <hr class="divider">
+  <p style="font-size:12px;color:var(--muted);margin-bottom:12px;font-weight:600;text-transform:uppercase;letter-spacing:0.7px;">Ltd Company (if applicable)</p>
+  <div class="grid grid-3">
+    <div class="field">
+      <label>Company Name</label>
+      <input type="text" name="company_name">
+    </div>
+    <div class="field">
+      <label>Company Registration No.</label>
+      <input type="text" name="company_reg">
+    </div>
+    <div class="field">
+      <label>VAT No. (if applicable)</label>
+      <input type="text" name="company_vat">
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════ 3. EDUCATION ══════════════════ -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-badge badge-sage">🎓</div>
+    <div>
+      <div class="section-title">Educational Background</div>
+      <div class="section-desc">Most recent first — include school, college, university</div>
+    </div>
+  </div>
+
+  <div id="edu-rows">
+    <div class="employer-card" style="border-color:#e0f0e8;">
+      <div class="employer-card-title" style="color:var(--sage);">Education Entry 1</div>
+      <div class="grid grid-3">
+        <div class="field">
+          <label>Dates Attended (from – to)</label>
+          <input type="text" name="edu_dates_1" placeholder="e.g. Sep 2010 – Jul 2015">
+        </div>
+        <div class="field">
+          <label>School / College / University</label>
+          <input type="text" name="edu_place_1">
+        </div>
+        <div class="field">
+          <label>Qualification &amp; Grade</label>
+          <input type="text" name="edu_qual_1" placeholder="e.g. GCSE English — B">
+        </div>
+      </div>
+    </div>
+    <div class="employer-card" style="border-color:#e0f0e8;">
+      <div class="employer-card-title" style="color:var(--sage);">Education Entry 2</div>
+      <div class="grid grid-3">
+        <div class="field">
+          <label>Dates Attended (from – to)</label>
+          <input type="text" name="edu_dates_2" placeholder="e.g. Sep 2015 – Jul 2017">
+        </div>
+        <div class="field">
+          <label>School / College / University</label>
+          <input type="text" name="edu_place_2">
+        </div>
+        <div class="field">
+          <label>Qualification &amp; Grade</label>
+          <input type="text" name="edu_qual_2">
+        </div>
+      </div>
+    </div>
+    <div class="employer-card" style="border-color:#e0f0e8;">
+      <div class="employer-card-title" style="color:var(--sage);">Education Entry 3</div>
+      <div class="grid grid-3">
+        <div class="field">
+          <label>Dates Attended (from – to)</label>
+          <input type="text" name="edu_dates_3">
+        </div>
+        <div class="field">
+          <label>School / College / University</label>
+          <input type="text" name="edu_place_3">
+        </div>
+        <div class="field">
+          <label>Qualification &amp; Grade</label>
+          <input type="text" name="edu_qual_3">
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════ 4. EMPLOYMENT HISTORY ══════════════════ -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-badge badge-teal">💼</div>
+    <div>
+      <div class="section-title">Employment History</div>
+      <div class="section-desc">CQC requirement: last two employers in full. Use the text box below for any earlier roles.</div>
+    </div>
+  </div>
+
+  <!-- EMPLOYER 1 -->
+  <div class="employer-card">
+    <div class="employer-card-title">Most Recent / Current Employer</div>
+    <div class="grid grid-2">
+      <div class="field">
+        <label>Company Name <span class="req">*</span></label>
+        <input type="text" name="emp1_company" required>
+      </div>
+      <div class="field">
+        <label>Position Held <span class="req">*</span></label>
+        <input type="text" name="emp1_position" required>
+      </div>
+      <div class="field col-span-2">
+        <label>Full Address <span class="req">*</span></label>
+        <input type="text" name="emp1_address" required>
+      </div>
+      <div class="field">
+        <label>Country</label>
+        <input type="text" name="emp1_country" value="United Kingdom">
+      </div>
+      <div class="field">
+        <label>Telephone</label>
+        <input type="tel" name="emp1_tel">
+      </div>
+      <div class="field">
+        <label>Start Date <span class="req">*</span></label>
+        <input type="month" name="emp1_start" required>
+      </div>
+      <div class="field">
+        <label>End Date (leave blank if current)</label>
+        <input type="month" name="emp1_end">
+      </div>
+      <div class="field col-span-2">
+        <label>Reason for Leaving</label>
+        <input type="text" name="emp1_reason" placeholder="e.g. Seeking career progression">
+      </div>
+    </div>
+  </div>
+
+  <!-- EMPLOYER 2 -->
+  <div class="employer-card">
+    <div class="employer-card-title">Previous Employer</div>
+    <div class="grid grid-2">
+      <div class="field">
+        <label>Company Name</label>
+        <input type="text" name="emp2_company">
+      </div>
+      <div class="field">
+        <label>Position Held</label>
+        <input type="text" name="emp2_position">
+      </div>
+      <div class="field col-span-2">
+        <label>Full Address</label>
+        <input type="text" name="emp2_address">
+      </div>
+      <div class="field">
+        <label>Country</label>
+        <input type="text" name="emp2_country" value="United Kingdom">
+      </div>
+      <div class="field">
+        <label>Telephone</label>
+        <input type="tel" name="emp2_tel">
+      </div>
+      <div class="field">
+        <label>Start Date</label>
+        <input type="month" name="emp2_start">
+      </div>
+      <div class="field">
+        <label>End Date</label>
+        <input type="month" name="emp2_end">
+      </div>
+      <div class="field col-span-2">
+        <label>Reason for Leaving</label>
+        <input type="text" name="emp2_reason">
+      </div>
+    </div>
+  </div>
+
+  <!-- Additional employment -->
+  <div class="field">
+    <label>Additional Employment History (earlier roles — optional)</label>
+    <textarea name="additional_employment" rows="4" placeholder="Please list any earlier employment here: employer name, dates, role, reason for leaving. Continue on a separate sheet if needed."></textarea>
+    <span class="helper">You may also bring a copy of your CV to your interview.</span>
+  </div>
+
+  <hr class="divider">
+
+  <div class="field">
+    <label>Employment Gaps — Please Explain Any Gaps in Your History</label>
+    <textarea name="employment_gaps" rows="3" placeholder="e.g. Jan 2022 – Apr 2022: Caring for a family member. If none, write 'None'."></textarea>
+  </div>
+</div>
+
+<!-- ══════════════════ 5. REFERENCES ══════════════════ -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-badge badge-lavender">📋</div>
+    <div>
+      <div class="section-title">References</div>
+      <div class="section-desc">Two most recent employers required. One personal reference accepted only if two employer references cannot be provided. Relatives and friends are not acceptable.</div>
+    </div>
+  </div>
+
+  <!-- REF 1 -->
+  <div class="ref-card">
+    <div class="ref-card-title">First Referee</div>
+    <div class="grid grid-2">
+      <div class="field">
+        <label>Title</label>
+        <select name="ref1_title">
+          <option value="">Select…</option>
+          <option>Mr</option><option>Mrs</option><option>Miss</option><option>Ms</option><option>Dr</option>
+        </select>
+      </div>
+      <div class="field">
+        <label>Full Name <span class="req">*</span></label>
+        <input type="text" name="ref1_name" required>
+      </div>
+      <div class="field">
+        <label>Job Title <span class="req">*</span></label>
+        <input type="text" name="ref1_jobtitle" required>
+      </div>
+      <div class="field">
+        <label>Organisation / Home Name <span class="req">*</span></label>
+        <input type="text" name="ref1_org" required>
+      </div>
+      <div class="field col-span-2">
+        <label>Address <span class="req">*</span></label>
+        <input type="text" name="ref1_address" required>
+      </div>
+      <div class="field">
+        <label>Country</label>
+        <input type="text" name="ref1_country" value="United Kingdom">
+      </div>
+      <div class="field">
+        <label>Telephone</label>
+        <input type="tel" name="ref1_tel">
+      </div>
+      <div class="field">
+        <label>Email Address</label>
+        <input type="email" name="ref1_email">
+      </div>
+      <div class="field">
+        <label>Your Employment Dates (Start – End)</label>
+        <input type="text" name="ref1_dates" placeholder="e.g. Jan 2020 – Mar 2023">
+      </div>
+    </div>
+    <div class="grid grid-2" style="margin-top:12px">
+      <div class="field">
+        <label>Have you told this person you listed them?</label>
+        <div class="yn-group">
+          <label class="yn-label"><input type="radio" name="ref1_informed" value="Yes"> Yes</label>
+          <label class="yn-label"><input type="radio" name="ref1_informed" value="No"> No</label>
+        </div>
+      </div>
+      <div class="field">
+        <label>May we approach before interview?</label>
+        <div class="yn-group">
+          <label class="yn-label"><input type="radio" name="ref1_approach" value="Yes"> Yes</label>
+          <label class="yn-label"><input type="radio" name="ref1_approach" value="No"> No</label>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- REF 2 -->
+  <div class="ref-card">
+    <div class="ref-card-title">Second Referee</div>
+    <div class="grid grid-2">
+      <div class="field">
+        <label>Title</label>
+        <select name="ref2_title">
+          <option value="">Select…</option>
+          <option>Mr</option><option>Mrs</option><option>Miss</option><option>Ms</option><option>Dr</option>
+        </select>
+      </div>
+      <div class="field">
+        <label>Full Name</label>
+        <input type="text" name="ref2_name">
+      </div>
+      <div class="field">
+        <label>Job Title</label>
+        <input type="text" name="ref2_jobtitle">
+      </div>
+      <div class="field">
+        <label>Organisation / Home Name</label>
+        <input type="text" name="ref2_org">
+      </div>
+      <div class="field col-span-2">
+        <label>Address</label>
+        <input type="text" name="ref2_address">
+      </div>
+      <div class="field">
+        <label>Country</label>
+        <input type="text" name="ref2_country" value="United Kingdom">
+      </div>
+      <div class="field">
+        <label>Telephone</label>
+        <input type="tel" name="ref2_tel">
+      </div>
+      <div class="field">
+        <label>Email Address</label>
+        <input type="email" name="ref2_email">
+      </div>
+      <div class="field">
+        <label>Your Employment Dates (Start – End)</label>
+        <input type="text" name="ref2_dates" placeholder="e.g. Jun 2018 – Dec 2019">
+      </div>
+    </div>
+    <div class="grid grid-2" style="margin-top:12px">
+      <div class="field">
+        <label>Have you told this person you listed them?</label>
+        <div class="yn-group">
+          <label class="yn-label"><input type="radio" name="ref2_informed" value="Yes"> Yes</label>
+          <label class="yn-label"><input type="radio" name="ref2_informed" value="No"> No</label>
+        </div>
+      </div>
+      <div class="field">
+        <label>May we approach before interview?</label>
+        <div class="yn-group">
+          <label class="yn-label"><input type="radio" name="ref2_approach" value="Yes"> Yes</label>
+          <label class="yn-label"><input type="radio" name="ref2_approach" value="No"> No</label>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════ 6. CRIMINAL CONVICTIONS ══════════════════ -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-badge badge-coral">⚖️</div>
+    <div>
+      <div class="section-title">Criminal Convictions & DBS</div>
+      <div class="section-desc">This post is exempt from the Rehabilitation of Offenders Act 1974 — all convictions including 'spent' must be declared</div>
+    </div>
+  </div>
+
+  <div class="grid grid-2" style="margin-bottom:14px">
+    <div class="field">
+      <label>Full Name (as on DBS) <span class="req">*</span></label>
+      <input type="text" name="dbs_name" required>
+    </div>
+    <div class="field">
+      <label>Any Previous / Other Names Used</label>
+      <input type="text" name="dbs_prev_name">
+    </div>
+    <div class="field">
+      <label>How Long at Current Address?</label>
+      <input type="text" name="dbs_address_length" placeholder="e.g. 3 years 2 months">
+    </div>
+  </div>
+
+  <div class="field">
+    <label>Details of Any Convictions, Cautions or Bound-Over Orders <span class="req">*</span></label>
+    <textarea name="convictions" rows="4" placeholder="Include dates. If none, write 'None'."></textarea>
+    <span class="helper">Please note: a criminal record does not automatically disqualify you from working in care. We assess each case individually.</span>
+  </div>
+</div>
+
+<!-- ══════════════════ 7. EQUALITY & DIVERSITY ══════════════════ -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-badge badge-lavender">🌍</div>
+    <div>
+      <div class="section-title">Equality & Diversity Monitoring</div>
+      <div class="section-desc">This information is used only for equal opportunities monitoring and is not seen by the recruitment panel</div>
+    </div>
+  </div>
+
+  <!-- Ethnicity -->
+  <div class="eth-section">
+    <div class="eth-group-title">A — White</div>
+    <div class="eth-options">
+      <label class="eth-option"><input type="radio" name="ethnicity" value="White British"> British</label>
+      <label class="eth-option"><input type="radio" name="ethnicity" value="White Irish"> Irish</label>
+      <label class="eth-option"><input type="radio" name="ethnicity" value="White Other"> Any other White background</label>
+    </div>
+  </div>
+  <div class="eth-section">
+    <div class="eth-group-title">B — Mixed</div>
+    <div class="eth-options">
+      <label class="eth-option"><input type="radio" name="ethnicity" value="Mixed White & Black Caribbean"> White &amp; Black Caribbean</label>
+      <label class="eth-option"><input type="radio" name="ethnicity" value="Mixed White & Black African"> White &amp; Black African</label>
+      <label class="eth-option"><input type="radio" name="ethnicity" value="Mixed White & Asian"> White &amp; Asian</label>
+      <label class="eth-option"><input type="radio" name="ethnicity" value="Mixed Other"> Any other Mixed background</label>
+    </div>
+  </div>
+  <div class="eth-section">
+    <div class="eth-group-title">C — Asian or Asian British</div>
+    <div class="eth-options">
+      <label class="eth-option"><input type="radio" name="ethnicity" value="Asian Indian"> Indian</label>
+      <label class="eth-option"><input type="radio" name="ethnicity" value="Asian Pakistani"> Pakistani</label>
+      <label class="eth-option"><input type="radio" name="ethnicity" value="Asian Bangladeshi"> Bangladeshi</label>
+      <label class="eth-option"><input type="radio" name="ethnicity" value="Asian Other"> Any other Asian background</label>
+    </div>
+  </div>
+  <div class="eth-section">
+    <div class="eth-group-title">D — Black or Black British</div>
+    <div class="eth-options">
+      <label class="eth-option"><input type="radio" name="ethnicity" value="Black Caribbean"> Caribbean</label>
+      <label class="eth-option"><input type="radio" name="ethnicity" value="Black African"> African</label>
+      <label class="eth-option"><input type="radio" name="ethnicity" value="Black Other"> Any other Black background</label>
+    </div>
+  </div>
+  <div class="eth-section">
+    <div class="eth-group-title">E / F — Other / Prefer Not to Say</div>
+    <div class="eth-options">
+      <label class="eth-option"><input type="radio" name="ethnicity" value="Chinese"> Chinese</label>
+      <label class="eth-option"><input type="radio" name="ethnicity" value="Other Ethnic Background"> Any other background</label>
+      <label class="eth-option"><input type="radio" name="ethnicity" value="Prefer Not To Say"> Prefer Not to Say</label>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <div class="grid grid-3">
+    <div class="field">
+      <label>Gender</label>
+      <div class="yn-group" style="flex-wrap:wrap">
+        <label class="yn-label"><input type="radio" name="gender" value="Female"> Female</label>
+        <label class="yn-label"><input type="radio" name="gender" value="Male"> Male</label>
+        <label class="yn-label"><input type="radio" name="gender" value="Prefer Not to Say"> Prefer Not to Say</label>
+      </div>
+    </div>
+    <div class="field">
+      <label>Religion / Faith / Belief</label>
+      <select name="religion">
+        <option value="">Select…</option>
+        <option>Christian</option><option>Buddhist</option><option>Hindu</option>
+        <option>Jewish</option><option>Muslim</option><option>Sikh</option>
+        <option>None</option><option>Other</option><option>Prefer Not to Say</option>
+      </select>
+    </div>
+    <div class="field">
+      <label>Do You Consider Yourself to Have a Disability?</label>
+      <div class="yn-group">
+        <label class="yn-label"><input type="radio" name="disability" value="Yes"> Yes</label>
+        <label class="yn-label"><input type="radio" name="disability" value="No"> No</label>
+      </div>
+    </div>
+  </div>
+
+  <div class="field" style="margin-top:14px">
+    <label>If Yes — Brief Details of Disability (optional)</label>
+    <textarea name="disability_details" rows="2" placeholder="You are not required to disclose this. We are a Disability Confident employer."></textarea>
+  </div>
+</div>
+
+<!-- ══════════════════ 8. MEDICAL ══════════════════ -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-badge badge-coral">🏥</div>
+    <div>
+      <div class="section-title">Medical Details</div>
+      <div class="section-desc">Have you ever been diagnosed with, or are you currently receiving treatment for any of the following?</div>
+    </div>
+  </div>
+
+  <div class="med-grid">
+    <!-- Each condition -->
+    <script>
+    // Conditions list rendered below as static HTML for form compatibility
+    </script>
+
+    <div class="med-item">
+      <span>Back or Joint Injuries</span>
+      <div class="med-yns">
+        <label class="med-yn"><input type="radio" name="med_back" value="Yes">Yes</label>
+        <label class="med-yn"><input type="radio" name="med_back" value="No" checked>No</label>
+      </div>
+    </div>
+    <div class="med-item">
+      <span>Tuberculosis</span>
+      <div class="med-yns">
+        <label class="med-yn"><input type="radio" name="med_tb" value="Yes">Yes</label>
+        <label class="med-yn"><input type="radio" name="med_tb" value="No" checked>No</label>
+      </div>
+    </div>
+    <div class="med-item">
+      <span>Asthma</span>
+      <div class="med-yns">
+        <label class="med-yn"><input type="radio" name="med_asthma" value="Yes">Yes</label>
+        <label class="med-yn"><input type="radio" name="med_asthma" value="No" checked>No</label>
+      </div>
+    </div>
+    <div class="med-item">
+      <span>Other Lung / Chest Conditions</span>
+      <div class="med-yns">
+        <label class="med-yn"><input type="radio" name="med_lung" value="Yes">Yes</label>
+        <label class="med-yn"><input type="radio" name="med_lung" value="No" checked>No</label>
+      </div>
+    </div>
+    <div class="med-item">
+      <span>Rheumatic Fever / Rheumatism</span>
+      <div class="med-yns">
+        <label class="med-yn"><input type="radio" name="med_rheum" value="Yes">Yes</label>
+        <label class="med-yn"><input type="radio" name="med_rheum" value="No" checked>No</label>
+      </div>
+    </div>
+    <div class="med-item">
+      <span>Heart Disease</span>
+      <div class="med-yns">
+        <label class="med-yn"><input type="radio" name="med_heart" value="Yes">Yes</label>
+        <label class="med-yn"><input type="radio" name="med_heart" value="No" checked>No</label>
+      </div>
+    </div>
+    <div class="med-item">
+      <span>Arthritis</span>
+      <div class="med-yns">
+        <label class="med-yn"><input type="radio" name="med_arthritis" value="Yes">Yes</label>
+        <label class="med-yn"><input type="radio" name="med_arthritis" value="No" checked>No</label>
+      </div>
+    </div>
+    <div class="med-item">
+      <span>Fits / Epilepsy</span>
+      <div class="med-yns">
+        <label class="med-yn"><input type="radio" name="med_epilepsy" value="Yes">Yes</label>
+        <label class="med-yn"><input type="radio" name="med_epilepsy" value="No" checked>No</label>
+      </div>
+    </div>
+    <div class="med-item">
+      <span>Mental Health Problems</span>
+      <div class="med-yns">
+        <label class="med-yn"><input type="radio" name="med_mental" value="Yes">Yes</label>
+        <label class="med-yn"><input type="radio" name="med_mental" value="No" checked>No</label>
+      </div>
+    </div>
+    <div class="med-item">
+      <span>Hernia</span>
+      <div class="med-yns">
+        <label class="med-yn"><input type="radio" name="med_hernia" value="Yes">Yes</label>
+        <label class="med-yn"><input type="radio" name="med_hernia" value="No" checked>No</label>
+      </div>
+    </div>
+    <div class="med-item">
+      <span>Typhoid / Dysentery</span>
+      <div class="med-yns">
+        <label class="med-yn"><input type="radio" name="med_typhoid" value="Yes">Yes</label>
+        <label class="med-yn"><input type="radio" name="med_typhoid" value="No" checked>No</label>
+      </div>
+    </div>
+    <div class="med-item">
+      <span>Stomach / Bowel / Digestive Problems</span>
+      <div class="med-yns">
+        <label class="med-yn"><input type="radio" name="med_stomach" value="Yes">Yes</label>
+        <label class="med-yn"><input type="radio" name="med_stomach" value="No" checked>No</label>
+      </div>
+    </div>
+    <div class="med-item">
+      <span>Kidney or Bladder Disease</span>
+      <div class="med-yns">
+        <label class="med-yn"><input type="radio" name="med_kidney" value="Yes">Yes</label>
+        <label class="med-yn"><input type="radio" name="med_kidney" value="No" checked>No</label>
+      </div>
+    </div>
+    <div class="med-item">
+      <span>Diabetes</span>
+      <div class="med-yns">
+        <label class="med-yn"><input type="radio" name="med_diabetes" value="Yes">Yes</label>
+        <label class="med-yn"><input type="radio" name="med_diabetes" value="No" checked>No</label>
+      </div>
+    </div>
+    <div class="med-item">
+      <span>Skin Diseases</span>
+      <div class="med-yns">
+        <label class="med-yn"><input type="radio" name="med_skin" value="Yes">Yes</label>
+        <label class="med-yn"><input type="radio" name="med_skin" value="No" checked>No</label>
+      </div>
+    </div>
+    <div class="med-item">
+      <span>Problems with Sight</span>
+      <div class="med-yns">
+        <label class="med-yn"><input type="radio" name="med_sight" value="Yes">Yes</label>
+        <label class="med-yn"><input type="radio" name="med_sight" value="No" checked>No</label>
+      </div>
+    </div>
+    <div class="med-item">
+      <span>Problems with Hearing</span>
+      <div class="med-yns">
+        <label class="med-yn"><input type="radio" name="med_hearing" value="Yes">Yes</label>
+        <label class="med-yn"><input type="radio" name="med_hearing" value="No" checked>No</label>
+      </div>
+    </div>
+    <div class="med-item">
+      <span>HIV</span>
+      <div class="med-yns">
+        <label class="med-yn"><input type="radio" name="med_hiv" value="Yes">Yes</label>
+        <label class="med-yn"><input type="radio" name="med_hiv" value="No" checked>No</label>
+      </div>
+    </div>
+    <div class="med-item">
+      <span>Hepatitis</span>
+      <div class="med-yns">
+        <label class="med-yn"><input type="radio" name="med_hep" value="Yes">Yes</label>
+        <label class="med-yn"><input type="radio" name="med_hep" value="No" checked>No</label>
+      </div>
+    </div>
+    <div class="med-item">
+      <span>Difficulty Sleeping</span>
+      <div class="med-yns">
+        <label class="med-yn"><input type="radio" name="med_sleep" value="Yes">Yes</label>
+        <label class="med-yn"><input type="radio" name="med_sleep" value="No" checked>No</label>
+      </div>
+    </div>
+    <div class="med-item">
+      <span>Medication on Strict Timetable</span>
+      <div class="med-yns">
+        <label class="med-yn"><input type="radio" name="med_medication" value="Yes">Yes</label>
+        <label class="med-yn"><input type="radio" name="med_medication" value="No" checked>No</label>
+      </div>
+    </div>
+    <div class="med-item">
+      <span>Chest X-Ray in Last 6 Months?</span>
+      <div class="med-yns">
+        <label class="med-yn"><input type="radio" name="med_xray" value="Yes">Yes</label>
+        <label class="med-yn"><input type="radio" name="med_xray" value="No" checked>No</label>
+      </div>
+    </div>
+  </div>
+
+  <div class="field" style="margin-top:16px">
+    <label>If "Yes" to Any Above — Please Provide Details</label>
+    <textarea name="med_yes_details" rows="3" placeholder="Include condition, dates, treatment, and any impact on your ability to work."></textarea>
+  </div>
+  <div class="field" style="margin-top:12px">
+    <label>Any Other Medical Conditions Not Listed Above</label>
+    <textarea name="med_other" rows="3" placeholder="Nature of condition, dates, and any time away from work. Include any history of counselling or medical advice related to HIV/AIDS."></textarea>
+  </div>
+
+  <div class="declaration-box" style="margin-top:16px;font-size:12.5px;">
+    I hereby declare that the information given above is correct to the best of my knowledge and belief and I give my consent to further enquiries being made to confirm the information given. Any illness or medical condition which may affect my ability to undertake the duties required of me has been declared above. I understand that non-disclosure of relevant facts may prejudice my application or, if appointed, lead to termination of employment.
+  </div>
+
+  <div class="grid grid-2">
+    <div class="field">
+      <label>Print Name</label>
+      <input type="text" name="med_print_name">
+    </div>
+    <div class="field">
+      <label>Date</label>
+      <input type="date" name="med_date">
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════ 9. DECLARATION ══════════════════ -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-badge badge-navy">✍️</div>
+    <div>
+      <div class="section-title">Declaration</div>
+      <div class="section-desc">Please read carefully before submitting</div>
+    </div>
+  </div>
+
+  <div class="declaration-box">
+    I certify that to the best of my knowledge, all the information I have entered on this application form is factually correct and complete, and that misleading statements may be sufficient for cancelling any agreements made.<br><br>
+    I agree to apply and pay for a DBS Disclosure and any other relevant statutory checks as advised. I understand that this post is exempt from section 4(2) of the Rehabilitation of Offenders Act 1974, and that all convictions — including 'spent' convictions — must be disclosed.<br><br>
+    Should I be convicted of any offence after completion of this form, I will notify Moonlight Homecare Ltd immediately. I acknowledge that failure to do so will result in my name being removed from the Agency Register.
+  </div>
+
+  <div class="grid grid-2">
+    <div class="field">
+      <label>Full Name (Print) <span class="req">*</span></label>
+      <input type="text" name="declaration_name" required>
+    </div>
+    <div class="field">
+      <label>Date <span class="req">*</span></label>
+      <input type="date" name="declaration_date" required>
+    </div>
+  </div>
+
+  <div class="field" style="margin-top:14px">
+    <label style="display:flex;align-items:flex-start;gap:10px;cursor:pointer;font-size:13px;font-weight:500;text-transform:none;letter-spacing:0;color:var(--text)">
+      <input type="checkbox" name="declaration_agree" required style="width:18px;height:18px;flex-shrink:0;margin-top:2px;accent-color:var(--teal)">
+      <span>I confirm that all information in this application is true and accurate. I understand that any false declaration may render me liable for dismissal. <span class="req">*</span></span>
+    </label>
+  </div>
+  <div class="field" style="margin-top:10px">
+    <label style="display:flex;align-items:flex-start;gap:10px;cursor:pointer;font-size:13px;font-weight:500;text-transform:none;letter-spacing:0;color:var(--text)">
+      <input type="checkbox" name="privacy_agree" required style="width:18px;height:18px;flex-shrink:0;margin-top:2px;accent-color:var(--teal)">
+      <span>I consent to Moonlight Homecare Ltd processing my personal data for recruitment purposes in accordance with UK GDPR. <span class="req">*</span></span>
+    </label>
+  </div>
+</div>
+
+<!-- ══════════════════ 10. DOCUMENTS CHECKLIST ══════════════════ -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-badge badge-sage">📁</div>
+    <div>
+      <div class="section-title">Documents to Bring / Send</div>
+      <div class="section-desc">Please tick what you are able to provide. Originals must be seen at interview even if photocopies are sent in advance.</div>
+    </div>
+  </div>
+
+  <div class="doc-grid">
+    <label class="doc-item"><input type="checkbox" name="doc_passport"> Passport &amp; Residence Permit</label>
+    <label class="doc-item"><input type="checkbox" name="doc_nmc"> NMC Statement of Entry / Pin Card</label>
+    <label class="doc-item"><input type="checkbox" name="doc_hep"> Hepatitis B Immunisation Details</label>
+    <label class="doc-item"><input type="checkbox" name="doc_dbs"> Enhanced DBS Certificate (most current)</label>
+    <label class="doc-item"><input type="checkbox" name="doc_birth"> Birth Certificate</label>
+    <label class="doc-item"><input type="checkbox" name="doc_ni"> NI Card</label>
+    <label class="doc-item"><input type="checkbox" name="doc_proof1"> Proof of Address 1 (utility bill)</label>
+    <label class="doc-item"><input type="checkbox" name="doc_proof2"> Proof of Address 2 (driving licence)</label>
+    <label class="doc-item"><input type="checkbox" name="doc_firstaid"> First Aid Certificate</label>
+    <label class="doc-item"><input type="checkbox" name="doc_mh"> Manual Handling Certificate</label>
+    <label class="doc-item"><input type="checkbox" name="doc_cpr"> CPR Certificate</label>
+    <label class="doc-item"><input type="checkbox" name="doc_food"> Food Hygiene Certificate</label>
+    <label class="doc-item"><input type="checkbox" name="doc_fire"> Fire Awareness Certificate</label>
+    <label class="doc-item"><input type="checkbox" name="doc_nvq"> NVQ / QCF / Diploma Certificates</label>
+    <label class="doc-item"><input type="checkbox" name="doc_other_certs"> Other Relevant Certificates</label>
+    <label class="doc-item"><input type="checkbox" name="doc_proof_student"> Student Nurse College Enrolment Proof</label>
+  </div>
+
+  <div class="field" style="margin-top:14px">
+    <label>Any Other Certificates or Documents (please list)</label>
+    <input type="text" name="doc_other_list" placeholder="e.g. Epilepsy Awareness, Control & Restraint, Health & Safety…">
+  </div>
+</div>
+
+<!-- ══════════════════ SUBMIT ══════════════════ -->
+<div class="submit-wrap">
+  <div class="submit-note">
+    📧 Your application will be sent to <strong style="color:rgba(255,255,255,0.85)">Moonlight Homecare Ltd</strong><br>
+    Questions? <strong style="color:var(--gold)">info.moonlight.homecare@gmail.com</strong> · <strong style="color:var(--gold)">www.moonlighthomecare.co.uk</strong>
+  </div>
+  <button type="submit" class="btn-submit">Submit Application →</button>
+</div>
+
+</form>
+
+<div id="success-msg">
+  <strong>✅ Application Submitted!</strong>
+  Thank you for applying to Moonlight Homecare Ltd. We have received your application and will be in touch shortly.<br><br>
+  Please ensure you bring all relevant documents to your interview.
+</div>
+
+</div><!-- /page-wrap -->
+
+<script>
+  const form = document.getElementById('appForm');
+  const success = document.getElementById('success-msg');
+
+  form.addEventListener('submit', async function(e) {
+    e.preventDefault();
+    const btn = form.querySelector('.btn-submit');
+    btn.textContent = 'Submitting…';
+    btn.disabled = true;
+
+    try {
+      const response = await fetch(form.action, {
+        method: 'POST',
+        body: new FormData(form),
+        headers: { 'Accept': 'application/json' }
+      });
+
+      if (response.ok) {
+        form.style.display = 'none';
+        success.style.display = 'block';
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      } else {
+        const data = await response.json();
+        alert('There was a problem submitting the form. Please try again or email us directly at info.moonlight.homecare@gmail.com');
+        btn.textContent = 'Submit Application →';
+        btn.disabled = false;
+      }
+    } catch (err) {
+      alert('Network error. Please check your connection and try again.');
+      btn.textContent = 'Submit Application →';
+      btn.disabled = false;
+    }
+  });
+</script>
+</body>
+</html>
